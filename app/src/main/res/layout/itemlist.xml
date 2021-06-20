@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemlist_cv"
+    android:layout_width="180dp"
+    android:layout_height="240dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context=".MenuActivity">
+
+
+    <LinearLayout
+        android:id="@+id/jadwal_sholat"
+        android:text="Jadwal Sholat GMT +7"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
+    <ImageView
+        android:src="@drawable/ic_launcher_background"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+    <LinearLayout
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="6"
+        />
+    </androidx.cardview.widget.CardView>

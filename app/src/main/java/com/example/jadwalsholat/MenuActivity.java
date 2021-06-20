@@ -14,11 +14,6 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        findViewById(R.id.jadwal_sholat).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this,MainActivity.class));
-            }
-        });
+        findViewById(R.id.jadwal_sholat).setOnClickListener(view -> startActivity(new Intent(MenuActivity.this,MainActivity.class)));
     }
 }

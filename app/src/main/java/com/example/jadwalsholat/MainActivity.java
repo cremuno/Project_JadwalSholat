@@ -45,16 +45,16 @@ public class MainActivity extends AppCompatActivity {
         js_isya = findViewById(R.id.js_isya);
         js_refresh_button = findViewById(R.id.js_refresh_button);
 
-        progressDialog=new ProgressDialog(MainActivity.this);
+        progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Mohon menunggu");
         progressDialog.show();
 
         getJackal();
 
-       js_refresh_button.setOnClickListener(new View.OnClickListener() {
+        js_refresh_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog =new ProgressDialog(MainActivity.this);
+                progressDialog = new ProgressDialog(MainActivity.this);
                 progressDialog.setMessage("Mohon ditunggu");
                 progressDialog.show();
 
@@ -65,41 +65,36 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id= item.getItemId();
-        if (id==android.R.id.home){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void getJackal(){
-        progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("Please Wait / Silahkan tunggu ...");
-        progressDialog.show();
-
+    public void getJackal() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiUrl.URL_ROOT_HTTPS)
+                .baseUrl(ApiUrl.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
         Call<Times> call = apiService.getJadwal();
 
-        call.enqueue(new Callback<Times>(){
-            @SuppressLint("SetTextI18n")
+        call.enqueue(new Callback<Times>() {
             @Override
-            public void onResponse(Call<Times> call, Response<Times> response){
+            public void onResponse(Call<Times> call, Response<Times> response) {
 
-            progressDialog.dismiss();
+                progressDialog.dismiss();
 
-            if (response.isSuccessful()) {
-                js_lokasi.setText(response.body().getLocation().get(0).getCity()+", "+response.body().getLocation().get(0).getCountry());
-                js_subuh.setText(response.body().getFajr());
-                js_dzuhur.setText(response.body().getDhuhr());
-                js_ashar.setText(response.body().getAsr());
-                js_maghrib.setText(response.body().getMaghrib());
-                js_isya.setText(response.body().getIsha());
-            }
+                if (response.isSuccessful()) {
+                    js_lokasi.setText(response.body().getFajr());
+                    js_subuh.setText(response.body().getFajr());
+                    js_dzuhur.setText(response.body().getDhuhr());
+                    js_ashar.setText(response.body().getAsr());
+                    js_maghrib.setText(response.body().getMaghrib());
+                    js_isya.setText(response.body().getIsha());
+                }
             }
 
             @Override
@@ -107,6 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(MainActivity.this, "Sorry, please try again... server Down..", Toast.LENGTH_SHORT).show();
             }
-    });
+        });
     }
 }
